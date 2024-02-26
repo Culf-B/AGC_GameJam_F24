@@ -1,0 +1,333 @@
+{
+    "size": [
+        10,
+        10
+    ],
+    "tileSet": [
+        {
+            "image": "assets/testTile.png"
+        }
+    ],
+    "tiles": [
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            }
+        ]
+    ]
+}
