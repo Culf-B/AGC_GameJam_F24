@@ -1,13 +1,14 @@
 import pygame
 import json
 from os import path
+import uielements
 
 class Tile:
     def __init__(self, tileSet, tileType, x, y, tileSize):
         self.tileSet = tileSet
         self.tileType = tileType
-        self.changeType(self.tileType)
         self.tileSize = tileSize
+        self.changeType(self.tileType)
         self.x = x
         self.y = y
 
@@ -18,13 +19,29 @@ class Tile:
             self.image.fill([0, 0, 0])
         else:
             self.image = pygame.image.load(self.tileSet[self.tileType]["image"])
+        
+        self.image = pygame.transform.scale(self.image, self.tileSize)
 
     def draw(self, surface, tileOffsetX, tileOffsetY):
         surface.blit(self.image, [self.x * self.tileSize[0] + tileOffsetX * self.tileSize[0], self.y * self.tileSize[1] + tileOffsetY * self.tileSize[1]])
 
-#fileToOpen = input('Filename: ')
+def saveLevel():
+    levelFile["tiles"] = []
+
+    for i, line in enumerate(loadedTiles):
+        levelFile["tiles"].append([])
+        for tile in line:
+            levelFile["tiles"][i].append({"type": tile.tileType})
+
+    with open(fileToOpen, "w") as f:
+        f.write(json.dumps(levelFile, indent = 4))
+
+    print("Level saved!")
+
+fileToOpen = input('Filename: ')
+fileToOpen += ".json"
 # Hard coded value for testing
-fileToOpen = "test.json"
+#fileToOpen = "test.json"
 
 print("Loading level...")
 if not path.exists(fileToOpen):
@@ -73,18 +90,48 @@ clock = pygame.time.Clock()
 
 run = True
 
-tileSize = [50, 50]
+tileSize = [25, 25]
 tileOffsetX = 0
 tileOffsetY = 0
 # Levelsize
 width = levelFile["size"][0]
 height = levelFile["size"][1]
 
+hoveringType = None
+selectedType = None
+
 # Windows
 renderSurface = pygame.Surface([500, 500])
+renderSurfacePos = [0, 0]
+
 renderInfo = pygame.Surface([500, 80])
+
 tileEditorSurface = pygame.Surface([290, 590])
+tileEditorSurfacePos = [510, 0]
+
 brushWindow = pygame.Surface([800, 200])
+brushWindowPos = [0, 600]
+
+# Ui elements setup
+standard_button_colorscheme = {
+    "standard": [(255,255,255),(255,255,255),(0,0,255,32)],
+    "click":    [(255,255,255),(255,255,255),(0,0,255,128)],
+    "hover":    [(255,255,255),(255,255,255),(0,0,255,64)]
+}
+
+tileEditorGroup = uielements.Group(tileEditorSurfacePos)
+
+saveButton = uielements.Button(
+    tileEditorSurface,
+    pygame.Rect(10,10,100,50),
+    standard_button_colorscheme,
+    font,
+    text="Save level",
+    command = lambda: saveLevel()
+)
+
+tileEditorGroup.add_elements(saveButton)
+tileEditorGroup.activate_all()
 
 loadedTiles = []
 for i, row in enumerate(levelFile["tiles"]):
@@ -107,17 +154,24 @@ while run:
                 tileOffsetX -= 1
         elif event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1:
-                # If on render window
+                
                 m_pos = pygame.mouse.get_pos()
 
-                tileX = int(m_pos[0] / tileSize[0]) - tileOffsetX
-                tileY = int(m_pos[1] / tileSize[1]) - tileOffsetY
-
-                if tileX >= 0 and tileX < width and tileY >= 0 and tileY < height:
-                    # Select tile
-                    loadedTiles[tileX][tileY].changeType(0)
+                # If on brush window
+                if pygame.Rect(brushWindowPos, brushWindow.get_size()).collidepoint(m_pos):
+                    selectedType = hoveringType
+    
+    if pygame.mouse.get_pressed()[0]:
+        m_pos = pygame.mouse.get_pos()
+        if pygame.Rect(renderSurfacePos, renderSurface.get_size()).collidepoint(m_pos):
+            tileX = int(m_pos[0] / tileSize[0]) - tileOffsetX
+            tileY = int(m_pos[1] / tileSize[1]) - tileOffsetY
+            if tileX < width and tileX >= 0 and tileY < width and tileY >= 0:
+                loadedTiles[tileX][tileY].changeType(selectedType)
 
     screen.fill([100, 100, 100])
+
+    hoveringType = None
 
     # Render tiles
     renderSurface.fill([255, 255, 255])
@@ -131,19 +185,38 @@ while run:
     # Render window info
     renderInfo.fill([50, 50, 50])
 
-    renderInfo.blit(font.render(f'Position: {-tileOffsetX}, {-tileOffsetY}', True, [0, 255, 0]), [0, 0])
+    renderInfo.blit(
+        font.render(
+            f'''Position: {-tileOffsetX}, {-tileOffsetY}
+Levelfile: {fileToOpen}
+Selected tile type index: {selectedType}
+Selected tile type path: {levelFile["tileSet"][selectedType]["image"] if selectedType != None else None}
+            ''',
+            True, [0, 255, 0]), [0, 0])
 
     screen.blit(renderInfo, [0, 510])
 
     # Tile editor window
     tileEditorSurface.fill([50, 50, 50])
 
-    screen.blit(tileEditorSurface, [510, 0])
+    tileEditorGroup.update()
+
+    screen.blit(tileEditorSurface, tileEditorSurfacePos)
 
     # Brush window
     brushWindow.fill([50, 50, 50])
 
-    screen.blit(brushWindow, [0, 600])
+    line = 0
+    maxTilesPrLine = brushWindow.get_width() // 50
+    for i, tileType in enumerate(levelFile["tileSet"]):
+        if i  > maxTilesPrLine:
+            line += 1
+        brushWindow.blit(pygame.transform.scale(pygame.image.load(tileType["image"]), [50, 50]), [(i - line * maxTilesPrLine) * 50, line * 50])
+        if pygame.Rect((i - line * maxTilesPrLine) * 50 + brushWindowPos[0], line * 50 + brushWindowPos[1], 50, 50).collidepoint(pygame.mouse.get_pos()):
+            hoveringType = i
+
+
+    screen.blit(brushWindow, brushWindowPos)
 
     pygame.display.update()
     clock.tick(60)
