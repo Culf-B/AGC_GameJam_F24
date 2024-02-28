@@ -59,6 +59,12 @@ if not path.exists(fileToOpen):
     # Tileset
     levelFile["tileSet"] = []
 
+    # Background
+    levelFile["background"] = ""
+
+    # Properties
+    levelFile["properties"] = {}
+
     # Tiles
     levelFile["tiles"] = []
     for i in range(width):
