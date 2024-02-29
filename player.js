@@ -40,6 +40,11 @@ class Player {
         this.y = 0;
         this.size = 100;
 
+        this.hitboxXOffset = 30;
+        this.hitboxYOffset = 30;
+        this.hitBoxWidth = 40;
+        this.hitBoxHeight = 66;
+
         this.freeMove = false;
         this.playermove=1;
         this.direction = 1;
@@ -56,6 +61,10 @@ class Player {
         return [this.x, this.y]
     }
   
+    getDrawOffset(scaleX, scaleY) {
+        return [((width / 2) - ((this.size * scaleX) / 2) * this.direction), height / 2 - (this.size * scaleY) / 2]
+    }
+
     update(delta, level) {
         /*
         Events and movement
@@ -113,32 +122,19 @@ class Player {
             this.currentAnimation = this.walkingAnimation;
         }
 
-        self.tempCollision = level.checkCollision([this.x + 400 - this.size / 2, this.y + 225 - this.size / 2], [this.size, this.size]);
-        if (self.tempCollision != false) {
-            console.log(self.tempCollision);
+        this.tempCollision = level.checkCollision([-this.x + this.hitboxXOffset, -this.y - this.vel[1] * delta + this.hitboxYOffset], [this.hitBoxWidth, this.hitBoxHeight]);
+        if (this.tempCollision != false) {
+            // Ground collision
+            if (this.tempCollision[1] >= -this.y && this.tempCollision[1] < -this.y + this.size - this.vel[1] * delta) {
+                this.vel[1] = 0
+                this.y = -this.tempCollision[1] + this.hitBoxHeight + this.hitboxYOffset;
+                print("Ground collision " + this.y);
+            }
         }
 
         // Movement
         this.x += movementToDo[0] * delta;
         this.y += this.vel[1] * delta;
-        this.y = mouseY;
-
-        // Left and right side boundary
-        if (this.x > 800) {
-            this.x = 800;
-        }
-        if (this.x < 0 - this.size) {
-            this.x = 0 - this.size;
-        }
-
-        // Bottom of screen boundary
-        if (this.y > height - this.size) {
-          this.y = height  - this.size;
-        }
-    }
-
-    detectCollision() {
-
     }
 
     draw(scaleX, scaleY, level) {
@@ -154,10 +150,12 @@ class Player {
             this.drawX = width / 2 - this.size / 2;
         }
         push()
-        translate(this.drawX - 50 * scaleX * this.direction, height / 2 - (this.size * scaleY) / 2)
+        this.tempDrawOffset = this.getDrawOffset(scaleX, scaleY);
+        translate(this.tempDrawOffset[0], this.tempDrawOffset[1]);
         scale(this.direction,1);
         noSmooth();
-        image(this.currentAnimation.get(),0,0, this.size * scaleX, this.size * scaleY);
+        image(this.currentAnimation.get(), 0, 0, this.size * scaleX, this.size * scaleY);
+        //rect(this.hitboxXOffset * scaleX, this.hitboxYOffset * scaleY, this.hitBoxWidth * scaleX, this.hitBoxHeight * scaleY); // Hitbox
         pop()
     }
   }

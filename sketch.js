@@ -73,18 +73,19 @@ class Level {
   }
 
   checkCollision(position, size) {
-
-    this.blockingTiles.forEach(tile => {
-      // X axis
-      print(position, [tile[0] * this.displayTileSize, tile[1] * this.displayTileSize]);
-      
-      if (tile[0] * this.displayTileSize < position[0] + size[0] && (tile[0] + 1) * this.displayTileSize > position[0]) {
-        // Y axis
-        if (tile[1] * this.displayTileSize < position[1] + size[1] && (tile[1] + 1) * this.displayTileSize > position[1]) {
-          return [tile[0] * this.displayTileSize, tile[1] * this.displayTileSize];
-        }
+    print(position, size);
+    for (let i = 0; i < this.blockingTiles.length; i++) {
+      this.tempTile = this.blockingTiles[i];
+      if (
+          this.tempTile[0]       * this.displayTileSize < position[0] + size[0] &&// X axis
+          (this.tempTile[0] + 1) * this.displayTileSize > position[0]           &&
+          this.tempTile[1]       * this.displayTileSize < position[1] + size[1] &&// Y axis
+          (this.tempTile[1] + 1) * this.displayTileSize > position[1]
+      ) {
+        print("collision");
+        return [this.tempTile[0] * this.displayTileSize, this.tempTile[1] * this.displayTileSize];
       }
-    });
+    }
     return false;
   }
 }
@@ -124,9 +125,9 @@ function draw() {
   delta = deltaTime / 1000;
 
   player.update(delta, level);
-
   playerPos = player.getPos();
-  level.updateDisplay(playerPos[0], playerPos[1] - height / 2);
+
+  level.updateDisplay(playerPos[0] + defaultCanvasWidth / 2 - player.size / 2, playerPos[1] + defaultCanvasHeight / 2 - player.size / 2);
   level.displayLevel(screenXmultiplier, screenYmultiplier);
   
   player.draw(screenXmultiplier, screenYmultiplier);
