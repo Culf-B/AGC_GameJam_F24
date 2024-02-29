@@ -7,7 +7,7 @@
         {
             "image": "assets/dirt.jpg",
             "properties": {
-                "blocking": false,
+                "blocking": true,
                 "dimensions": [
                     1,
                     1
@@ -75,27 +75,6 @@
     "tiles": [
         [
             {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
                 "type": null
             },
             {
@@ -105,298 +84,37 @@
                 "type": 1
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
                 "type": 0
@@ -404,21 +122,6 @@
         ],
         [
             {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
                 "type": null
             },
             {
@@ -434,79 +137,38 @@
                 "type": 1
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
             }
         ],
         [
             {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
                 "type": null
             },
             {
@@ -528,113 +190,28 @@
                 "type": 1
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 5
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            }
-        ],
-        [
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": null
-            },
-            {
-                "type": 1
+                "type": 0
             }
         ],
         [
@@ -669,6 +246,41 @@
                 "type": 1
             },
             {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
                 "type": null
             },
             {
@@ -682,6 +294,347 @@
             },
             {
                 "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
             }
         ],
         [
@@ -716,19 +669,19 @@
                 "type": 1
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
+                "type": 0
             }
         ],
         [
@@ -757,25 +710,72 @@
                 "type": null
             },
             {
+                "type": 1
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            }
+        ],
+        [
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
+                "type": null
+            },
+            {
                 "type": null
             },
             {
                 "type": 1
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": null
+                "type": 0
             },
             {
-                "type": 1
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
+            },
+            {
+                "type": 0
             }
         ]
     ]

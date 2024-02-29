@@ -12,7 +12,7 @@ class Player {
         
         // Physics
         this.speed = 300;
-        this.jumpForce = 20 * 100;
+        this.jumpForce = 1000;
         this.g = 9.82 * 5; // px / s
         this.vel = [0, 0];
 
@@ -39,6 +39,7 @@ class Player {
         this.x = 0;
         this.y = 0;
         this.size = 100;
+        this.onGround = false;
 
         this.hitboxXOffset = 30;
         this.hitboxYOffset = 30;
@@ -83,9 +84,9 @@ class Player {
                 movementToDo[0] -= 1 * this.speed;
                 this.direction = -1;
             }
-            /*if (keyIsDown(this.keyCodes.jump) && this.y == sH * level.levelData.value.floorPosition - this.size) {
-                this.vel[1] -= this.jumpForce;
-            }*/
+            if (keyIsDown(this.keyCodes.jump) && this.onGround) {
+                this.vel[1] += this.jumpForce;
+            }
         }
         // Interaction events / update
         if (keyIsDown(this.keyCodes.interact)) {
@@ -110,11 +111,7 @@ class Player {
         this.interactionSkipTimer += delta;
         
         // Velocity changes on y axis (gravity and jump)
-        if (this.y < height * (height - 50) - this.size) {
-          this.vel[1] -= this.g * delta * 100;
-        } else if (this.vel[1] > 0) {
-          this.vel[1] = 0; 
-        }
+        this.vel[1] -= this.g * delta * 100;
   
         if (movementToDo[0] == 0) {
             this.currentAnimation = this.standingAnimation;
@@ -122,13 +119,27 @@ class Player {
             this.currentAnimation = this.walkingAnimation;
         }
 
-        this.tempCollision = level.checkCollision([-this.x + this.hitboxXOffset, -this.y - this.vel[1] * delta + this.hitboxYOffset], [this.hitBoxWidth, this.hitBoxHeight]);
-        if (this.tempCollision != false) {
+        this.onGround = false;
+        this.yStart = this.y;
+        this.vel1Start = this.vel[1];
+        this.tempCollisions = level.checkCollision([-this.x - movementToDo[0] * delta + this.hitboxXOffset, -this.y - this.vel[1] * delta + this.hitboxYOffset], [this.hitBoxWidth, this.hitBoxHeight]);
+        for (let i = 0; i < this.tempCollisions.length; i++) {
+            this.tempCollision = this.tempCollisions[i];
             // Ground collision
-            if (this.tempCollision[1] >= -this.y && this.tempCollision[1] < -this.y + this.size - this.vel[1] * delta) {
+            if (this.tempCollision[1] + this.tempCollision[3] > -this.y + this.hitboxYOffset + this.hitBoxHeight) {
                 this.vel[1] = 0
                 this.y = -this.tempCollision[1] + this.hitBoxHeight + this.hitboxYOffset;
-                print("Ground collision " + this.y);
+                this.onGround = true;
+            }
+            // Collisions right side
+            else if (this.tempCollision[0] + this.tempCollision[2] > -this.x + this.hitboxXOffset + this.hitBoxWidth) {
+                movementToDo[0] = 0;
+                this.x = -this.tempCollision[0] + this.hitBoxWidth + this.hitboxXOffset;
+            }
+            // Collisions left side
+            else if (this.tempCollision[0] < -this.x + this.hitboxXOffset) {
+                movementToDo[0] = 0;
+                this.x = -this.tempCollision[0] - this.tempCollision[2] + this.hitboxXOffset;
             }
         }
 
@@ -155,7 +166,7 @@ class Player {
         scale(this.direction,1);
         noSmooth();
         image(this.currentAnimation.get(), 0, 0, this.size * scaleX, this.size * scaleY);
-        //rect(this.hitboxXOffset * scaleX, this.hitboxYOffset * scaleY, this.hitBoxWidth * scaleX, this.hitBoxHeight * scaleY); // Hitbox
+        rect(this.hitboxXOffset * scaleX, this.hitboxYOffset * scaleY, this.hitBoxWidth * scaleX, this.hitBoxHeight * scaleY); // Hitbox
         pop()
     }
   }

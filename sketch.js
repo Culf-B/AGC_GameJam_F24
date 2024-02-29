@@ -73,7 +73,7 @@ class Level {
   }
 
   checkCollision(position, size) {
-    print(position, size);
+    this.tempCollisions = [];
     for (let i = 0; i < this.blockingTiles.length; i++) {
       this.tempTile = this.blockingTiles[i];
       if (
@@ -82,11 +82,10 @@ class Level {
           this.tempTile[1]       * this.displayTileSize < position[1] + size[1] &&// Y axis
           (this.tempTile[1] + 1) * this.displayTileSize > position[1]
       ) {
-        print("collision");
-        return [this.tempTile[0] * this.displayTileSize, this.tempTile[1] * this.displayTileSize];
+        this.tempCollisions.push([this.tempTile[0] * this.displayTileSize, this.tempTile[1] * this.displayTileSize, this.displayTileSize, this.displayTileSize]);
       }
     }
-    return false;
+    return this.tempCollisions;
   }
 }
 
@@ -107,7 +106,7 @@ var screenYmultiplier = 1;
 
 function preload() {
   level = new Level();
-  level.loadLevel("levels/test.json");
+  level.loadLevel("levels/longlvl.json");
 }
 
 function setup() {
