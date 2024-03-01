@@ -155,7 +155,7 @@ var screenYmultiplier = 1;
 
 function preload() {
   level = new Level();
-  level.loadLevel("levels/longlvl.json");
+  level.loadLevel("levels/tableTest1.json");
 }
 
 function setup() {
