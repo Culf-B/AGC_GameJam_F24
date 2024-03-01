@@ -124,20 +124,29 @@ class Player {
         this.vel1Start = this.vel[1];
         this.tempCollisions = level.checkCollision([-this.x - movementToDo[0] * delta + this.hitboxXOffset, -this.y - this.vel[1] * delta + this.hitboxYOffset], [this.hitBoxWidth, this.hitBoxHeight]);
         for (let i = 0; i < this.tempCollisions.length; i++) {
-            this.tempCollision = this.tempCollisions[i];
+            this.tempCollision = this.tempCollisions[i].rect;
             // Ground collision
-            if (this.tempCollision[1] + this.tempCollision[3] > -this.y + this.hitboxYOffset + this.hitBoxHeight) {
+            if (
+                this.tempCollision[1] + this.tempCollision[3] > -this.y + this.hitboxYOffset + this.hitBoxHeight &&
+                this.tempCollisions[i].blocks[2] == true
+            ) {
                 this.vel[1] = 0
                 this.y = -this.tempCollision[1] + this.hitBoxHeight + this.hitboxYOffset;
                 this.onGround = true;
             }
             // Collisions right side
-            else if (this.tempCollision[0] + this.tempCollision[2] > -this.x + this.hitboxXOffset + this.hitBoxWidth) {
+            else if (
+                this.tempCollision[0] + this.tempCollision[2] > -this.x + this.hitboxXOffset + this.hitBoxWidth &&
+                this.tempCollisions[i].blocks[0] == true
+            ) {
                 movementToDo[0] = 0;
                 this.x = -this.tempCollision[0] + this.hitBoxWidth + this.hitboxXOffset;
             }
             // Collisions left side
-            else if (this.tempCollision[0] < -this.x + this.hitboxXOffset) {
+            else if (
+                this.tempCollision[0] < -this.x + this.hitboxXOffset &&
+                this.tempCollisions[i].blocks[1] == true
+            ) {
                 movementToDo[0] = 0;
                 this.x = -this.tempCollision[0] - this.tempCollision[2] + this.hitboxXOffset;
             }
@@ -166,7 +175,7 @@ class Player {
         scale(this.direction,1);
         noSmooth();
         image(this.currentAnimation.get(), 0, 0, this.size * scaleX, this.size * scaleY);
-        rect(this.hitboxXOffset * scaleX, this.hitboxYOffset * scaleY, this.hitBoxWidth * scaleX, this.hitBoxHeight * scaleY); // Hitbox
+        //rect(this.hitboxXOffset * scaleX, this.hitboxYOffset * scaleY, this.hitBoxWidth * scaleX, this.hitBoxHeight * scaleY); // Hitbox
         pop()
     }
   }

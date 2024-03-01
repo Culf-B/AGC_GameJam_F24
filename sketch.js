@@ -42,7 +42,48 @@ class Level {
           // Handle tile properties
           this.tempProperties = this.tileSet.tileSet[this.tempImageType].properties
           if (this.tempProperties.blocking) {
-            this.blockingTiles.push([i, j]);
+            this.tempBXP = true;
+            this.tempBXN = true;
+            this.tempBYP = true;
+            this.tempBYN = true;
+            if (i > 0) {
+              this.tempNeighborTileType = this.tiles[i - 1][j].type;
+              if (this.tempNeighborTileType != null) {
+                this.tempBXP = false;
+                if (this.tileSet.tileSet[this.tempNeighborTileType].properties.blocking == false) {
+                  this.tempBXP = true;
+                }
+              }
+            }
+            if (i < this.tiles.length - 1) {
+              this.tempNeighborTileType = this.tiles[i + 1][j].type;
+              if (this.tempNeighborTileType != null) {
+                this.tempBXN = false;
+                if (this.tileSet.tileSet[this.tempNeighborTileType].properties.blocking == false) {
+                  this.tempBXN = true;
+                }
+              }
+            }
+            if (j > 0) {
+              this.tempNeighborTileType = this.tiles[i][j - 1].type;
+              if (this.tempNeighborTileType != null) {
+                this.tempBYP = false;
+                if (this.tileSet.tileSet[this.tempNeighborTileType].properties.blocking == false) {
+                  this.tempBYP = true;
+                  print("test", i, j);
+                }
+              }
+            }
+            if (j < this.tiles[i].length - 1) {
+              this.tempNeighborTileType = this.tiles[i][j + 1].type;
+              if (this.tempNeighborTileType != null) {
+                this.tempBYN = false;
+                if (this.tileSet.tileSet[this.tempNeighborTileType].properties.blocking == false) {
+                  this.tempBYN = true;
+                }
+              }
+            }
+            this.blockingTiles.push({"pos": [i, j], "blocks": [this.tempBXP, this.tempBXN, this.tempBYP, this.tempBXN]});
           }
 
           // Render tile
@@ -75,14 +116,22 @@ class Level {
   checkCollision(position, size) {
     this.tempCollisions = [];
     for (let i = 0; i < this.blockingTiles.length; i++) {
-      this.tempTile = this.blockingTiles[i];
+      this.tempTile = this.blockingTiles[i].pos;
       if (
           this.tempTile[0]       * this.displayTileSize < position[0] + size[0] &&// X axis
           (this.tempTile[0] + 1) * this.displayTileSize > position[0]           &&
           this.tempTile[1]       * this.displayTileSize < position[1] + size[1] &&// Y axis
           (this.tempTile[1] + 1) * this.displayTileSize > position[1]
       ) {
-        this.tempCollisions.push([this.tempTile[0] * this.displayTileSize, this.tempTile[1] * this.displayTileSize, this.displayTileSize, this.displayTileSize]);
+        this.tempCollisions.push(
+          {"rect": [
+            this.tempTile[0] * this.displayTileSize,
+            this.tempTile[1] * this.displayTileSize,
+            this.displayTileSize,
+            this.displayTileSize
+          ],
+          "blocks": this.blockingTiles[i].blocks
+        });
       }
     }
     return this.tempCollisions;
@@ -121,7 +170,8 @@ function setup() {
 function draw() {
   background(120, 100, 200);
 
-  delta = deltaTime / 1000;
+  //delta = deltaTime / 1000;
+  delta = 16.7 / 1000; // Lagspikes makes player glitch through the floor, so deltatime is temporarly disabled
 
   player.update(delta, level);
   playerPos = player.getPos();
