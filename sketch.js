@@ -41,6 +41,7 @@ class Level {
         if (this.tempImageType != null) {
           // Handle tile properties
           this.tempProperties = this.tileSet.tileSet[this.tempImageType].properties
+          // Determine which surfaces blocking tiles is blocking and which sides is already blocked by other tiles. This fixes some collisions bugs
           if (this.tempProperties.blocking) {
             this.tempBXP = true;
             this.tempBXN = true;
@@ -161,7 +162,7 @@ function preload() {
 function setup() {
   createCanvas(defaultCanvasWidth, defaultCanvasHeight);
   windowResized();
-  level.setupRenderer(defaultCanvasWidth, defaultCanvasHeight, 50);
+  level.setupRenderer(defaultCanvasWidth, defaultCanvasHeight, 20);
   level.renderLevel();
 
   player = new Player(65, 68, 32, 69, level.file.properties.spawnPos);

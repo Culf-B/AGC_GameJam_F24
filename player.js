@@ -9,12 +9,14 @@ class Player {
             "jump": jump,
             "interact": interact
         };
+        this.jumpKeyPressed = false;
         
         // Physics
         this.speed = 300;
-        this.jumpForce = 1000;
+        this.jumpForce = 1300;
         this.g = 9.82 * 5; // px / s
         this.vel = [0, 0];
+        this.gliderGMultiplier = 0.1;
 
         // Animations
         this.standingAnimation = new GameAnimation(
@@ -40,6 +42,7 @@ class Player {
         this.y = 0;
         this.size = 100;
         this.onGround = false;
+        this.glide = false;
 
         this.hitboxXOffset = 30;
         this.hitboxYOffset = 30;
@@ -84,8 +87,20 @@ class Player {
                 movementToDo[0] -= 1 * this.speed;
                 this.direction = -1;
             }
+            // Do jump
             if (keyIsDown(this.keyCodes.jump) && this.onGround) {
                 this.vel[1] += this.jumpForce;
+                this.jumpKeyPressed = true;
+            }
+            // Toggle glide
+            if (keyIsDown(this.keyCodes.jump) && !this.onGround && !this.jumpKeyPressed) {
+                this.jumpKeyPressed = true;
+                this.glide = true;
+            } else if (this.jumpKeyPressed && !keyIsDown(this.keyCodes.jump)) {
+                this.jumpKeyPressed = false;
+                this.glide = false;
+            } else if (this.onGround) {
+                this.glide = false;
             }
         }
         // Interaction events / update
@@ -111,7 +126,11 @@ class Player {
         this.interactionSkipTimer += delta;
         
         // Velocity changes on y axis (gravity and jump)
-        this.vel[1] -= this.g * delta * 100;
+        this.currentGravityAccel = -this.g * delta * 100;
+        if (this.glide && this.vel[1] + this.currentGravityAccel < 0) {
+            this.currentGravityAccel *= this.gliderGMultiplier;
+        }
+        this.vel[1] += this.currentGravityAccel;
   
         if (movementToDo[0] == 0) {
             this.currentAnimation = this.standingAnimation;

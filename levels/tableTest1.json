@@ -5,7 +5,7 @@
     ],
     "tileSet": [
         {
-            "image": "assets/kitchenCounter.jpg",
+            "image": "assets/planks.jpg",
             "properties": {
                 "blocking": true,
                 "dimensions": [
